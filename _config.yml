@@ -16,7 +16,7 @@ timezone:
 
 title: Ray # the main title
 
-tagline: 最好的种树时间是十年前，其次是现在 # it will display as the sub-title
+tagline: abcd # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   最好的种树时间是十年前，其次是现在
