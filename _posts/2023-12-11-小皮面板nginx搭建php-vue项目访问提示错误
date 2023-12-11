@@ -54,6 +54,6 @@ server {
 }
 
 
-主要是第1段，新增：`  try_files $uri $uri/ /index.php?$query_string;` 即可
+主要是第1段，在小皮面板`网站->管理->修改->错误页面`编辑框最后新增：`  try_files $uri $uri/ /index.php?$query_string;` 即可
 
 ```
