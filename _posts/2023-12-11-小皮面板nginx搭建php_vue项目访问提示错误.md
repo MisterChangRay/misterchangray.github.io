@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "小皮面板nginx搭建php-vue项目访问提示错误"
+title:  "小皮面板nginx搭建php_vue项目访问提示错误"
 date:   2023-12-11 13:29:20 +0800
 categories:
       - 杂项
