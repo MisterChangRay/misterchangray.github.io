@@ -144,7 +144,7 @@ commit
 从binlog中可以看出，事务执行也是遵循上述模板，所有的sql只有一个commit;
 
 完整binlog：
-```binlog
+```
 # at 1120650
 #231219 15:34:23 server id 1  end_log_pos 1120725 CRC32 0x1e836084 	Anonymous_GTID	last_committed=67	sequence_number=68	rbr_only=yes	original_committed_timestamp=1702971263546547	immediate_commit_timestamp=1702971263546547	transaction_length=527
 /*!50718 SET TRANSACTION ISOLATION LEVEL READ COMMITTED*//*!*/;
