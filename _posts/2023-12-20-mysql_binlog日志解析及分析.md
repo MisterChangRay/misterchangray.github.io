@@ -1,10 +1,3 @@
-mysql binlog 日志解析及分析流程
-
-在mysql中，binlog记录了所有记录操作(insert,update,delete)当然也包括表变更等操作
-本篇文章将详细讲解binlog格式以及常见的问题，为广大道友快速入门！
-
-执行环境为:mysql8
-
 ---
 layout: post
 title:  "mysql binlog 日志解析及分析"
@@ -19,6 +12,15 @@ tags:
 目录：
 * awsl  
 {:toc}
+
+mysql binlog 日志解析及分析流程
+
+在mysql中，binlog记录了所有记录操作(insert,update,delete)当然也包括表变更等操作
+本篇文章将详细讲解binlog格式以及常见的问题，为广大道友快速入门！
+
+执行环境为:mysql8
+
+
 
 ### 1. 确认是否打开binlog
 ```sql
