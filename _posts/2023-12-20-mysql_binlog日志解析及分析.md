@@ -210,7 +210,7 @@ mysql并不支持查询历史链接分配信息，所以需要自己来设计完
 
 以下操作可以保存连接分配日志并：
 
-1. 首先需要创建审计库以及表sql
+#### 1. 首先需要创建审计库以及表sql
 ```sql
 create dabase  db_monitor;
 use db_monitor;
@@ -225,7 +225,7 @@ CREATE TABLE `accesslog` (
 
 ```
 
-2. 在mysql`init`链接中增加以下参数
+#### 2. 在mysql`init`链接中增加以下参数
 
 修改my.cnf配置文件以下位置,修改后记得重启mysql。
 
@@ -237,7 +237,7 @@ init_connect='SET NAMES utf8'
 init_connect='insert into db_monitor.accesslog(thread_id,log_time,localname,matchname) values(connection_id(),now(),user(),current_user());SET NAMES utf8'
 ```
 
-3. 创建用户需要授权用户审计库权限
+#### 3. 创建用户需要授权用户审计库权限
 需要注意两点, root用户登录不会记录审计日志
 ```sql
  -- 创建用户test密码123456,并运行从任意IP链接
@@ -251,7 +251,7 @@ init_connect='insert into db_monitor.accesslog(thread_id,log_time,localname,matc
  grant select on db_monitor.* to 'test'@'%';
 ```
 
-4. 测试审计功能
+#### 4. 测试审计功能
 
 使用test链接进数据库，然后查看审计表。此时会有 `thread_id` 分配信息。 自此以后，就可以根据`bin_log中`的`thread_id`来进行定位了
 
