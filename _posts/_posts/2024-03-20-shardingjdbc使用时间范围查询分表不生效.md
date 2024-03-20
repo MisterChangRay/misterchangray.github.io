@@ -10,9 +10,9 @@ tags:
 
 最近写一个小功能，公司有封装一套sharding包，引入即可直接使用。
 
-于是按照文档引入，配置完成。使用了id和时间分别。 分别涉及到根据id查询和根据时间查询；
+于是按照文档引入，配置完成。使用了id和时间分表， 分别涉及到根据id查询和根据时间查询；
 
-也就是以下sql:
+也就是sql长得像下面:
 ```sql
 select * from test where id = 1;
 select * from test where create_date < '2024-03-20 11:00:00' and create_date > '2024-03-19 11:00:00'
