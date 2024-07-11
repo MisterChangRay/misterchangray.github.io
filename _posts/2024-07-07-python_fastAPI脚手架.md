@@ -10,6 +10,12 @@ tags:
       
 ---
 
+开源了一个脚手架项目，适合webapi开发。
+git地址:`https://github.com/MisterChangRay/fastapi-demo/`
+
+下面适合开发一些简单得项目
+---------------------
+
 很简单得东西,留着自己用得。不做过多介绍了。
 
 主要是整合了 fastapi, SQLAlchemy，日志，mysql, 以及一些代码示例。 留着以后快速开发一些玩具项目。
