@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "xjar支持springboot3分析"
+title:  "魔改xjar支持springboot3"
 date:   2024-09-29 10:29:20 +0800
 categories:
       - java
