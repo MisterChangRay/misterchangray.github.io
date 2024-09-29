@@ -15,14 +15,14 @@ springboot 内置cache支持。 可以很方便的对数据进行缓存。 框�
 这里简单介绍 springboot + redis 对接口进行缓存.
 
 1. 导入以下依赖：
-```
+```java
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
 ```
 
 2. 配置好redis连接信息：
    
-```
+```java
 # Redis数据库索引（默认为0）
 spring.data.redis.database=0
 # Redis服务器地址
@@ -39,7 +39,7 @@ spring.data.redis.password=
 
 4. 配置redis序列化方式，以及配置cache地址：
 
-```
+```java
 /**
 这里是配置redis序列化为json格式
 */
@@ -73,6 +73,7 @@ spring.data.redis.password=
 
 最后只需要在你想要缓存的方法上加上注解` @Cacheable` 可以对方法进行缓存了
 示例代码：
+
 ```java
 package com.example.spiderserver.service;
 
