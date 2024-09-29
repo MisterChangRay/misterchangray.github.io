@@ -9,38 +9,38 @@ tags:
       - jar包加密
 ---
 
-最近公司需要将项目部署在第三方服务器，于是就有了jar包加密的需求，了解了下目前加密方案现况:
+最近公司需要将项目部署在第三方服务器，于是就有了jar包加密的需求，了解了下目前加密方案现况如下:
 
 1. 混淆方案，就是在代码中添加大量伪代码，以便隐藏业务代码
 2. 加密方案，将jar包中的所有class加密，在运行时通过自定义classloader进行解密
 
-目前有的方案基本思路就是上面的，找了一圈最后使用了xjar这个开源项目。它的实现思路就是方案2.
+目前有的所有加密方案基本思路都跟上面大差不差，在了解了一圈决定使用了xjar这个开源项目。它的实现思路就是方案2.
 
-xjar项目文档还是不错的，clone下来，跟着文档，很容易就测试并通过了我的测试项目，于是便推给其他同事使用了。
+打开github首页，xjar项目文档还是不错的，clone下来，跟着文档上手，很容易就测试并通过了我的测试项目，接着便推给其他同事使用了。
 
-好景不长，下午就有同事找我，说他的项目加密后不能成功运行。我去看了下，操作上没什么问题，但是就是加密包不能成功运行。
+好景不长，下午就有同事找我，说他的项目加密后不能成功运行。我去看了下，加密操作上没什么问题，但是就是加密包不能成功运行。
 报错如下：
 ```
 错误: 找不到或无法加载主类 null
 原因: java.lang.ClassNotFoundException: null
 panic: exit status 1
 ```
-同事那边使用了springboot3，我测试项目是springboot2。
+了解了下，同事那边使用了springboot3，而我测试项目是springboot2。 难道不支持springboot3? 我心里想到。
 
-看了下加密的jar包目录结构，很容易就发现以下问题：
+先简单看了下加密的jar包目录结构，很容易就发现以下问题：
 1. jar包中MANIFEST.MF文件中, Main-Class属性没有值
-2. jar包中没有将加解密的classloader打进去
+2. jar包中没有将加解密相关的的class打进去
    
-看样子还需要进行二开了，唉。 clone项目到本地，拉个新分支。
+看样子需要进行二开了，唉。 clone项目到本地，拉个新分支。
 
 首先看下源码，在`XBootEncryptor`中定义了springboot的classloader`final String jarLauncher = "org.springframework.boot.loader.JarLauncher";` 这里的jarlauncher在spring3中已经变包路径了。
-没想到这么简单，心里暗喜。首先把这里修改为：`org.springframework.boot.loader.launch.JarLauncher`。 写个测试用例，重新打包。
+没想到这么简单，心里暗喜。于是把这里修改为：`org.springframework.boot.loader.launch.JarLauncher`。 用spring3搭个demo, 重新打包。
 
 再看jar文件， main-class已经写出去了，xjar相关的包也成功写到jar包。松了口气，看样子没太大问题。
 
-开命令窗口，启动项目，一气呵成。看到springboot的logo输出时，心里已经松了口气。
+开命令窗口，启动项目，一气呵成。看到终端输出springboot的logo时，心里已经松了口气。
 
-可惜天不遂愿，打印了几行日志后，又报以下错误：
+可惜天不遂愿，又打印了几行日志后，抛出以下错误：
 ```
 2024-09-27T17:51:36.403+08:00 ERROR 3796 --- [demo] [           main] o.s.boot.SpringApplication               : Application run failed
 
@@ -96,10 +96,11 @@ panic: exit status 1
 
 一脸蒙蔽，这tm是什么错啊。
 
-再看源码，xjar是自定义classloader来加载并解密类，核心就在`XBootClassLoader.findClass`。 这里打印下class的文件数据，看看加载的什么鬼~
+再看源码，xjar是自定义classloader来加载并解密类，核心就在`XBootClassLoader.findClass`。 这里源码中修改并打印下class的文件数据，看看究竟加载的什么鬼~
 
-启动项目发现，也是解密了的啊，但为啥报错呢？只能万能断点大发了，断点在异常堆栈`SimpleMetadataReader.getClassReader`处，从这里入手。
-方法反编译源码如下：
+启动项目发现，class文件已解密，但为啥报错呢？只能使用万能断点大法了，在异常堆栈`SimpleMetadataReader.getClassReader`处断点，从这里入手。
+
+该方法反编译源码如下：
 ```
     private static ClassReader getClassReader(Resource resource) throws IOException {
         InputStream is = resource.getInputStream();
@@ -131,9 +132,9 @@ panic: exit status 1
     }
 
 ```
-这里有看到inputstrem,于是断点把inputstream打印输出看下，发现这里读取的class文件居然不是解密后。那么看看为啥这里没解密呢？ 继续往上跟堆栈。
+这里有看到inputstrem,于是断点把inputstream打印输出看下内容，发现这里读取的class文件居然是加密的。那么为啥这里没解密呢？ 继续往上跟堆栈。
 
-根据参数Resource, 往上跟可以找到springboot扫描注解组件的class，然后再调用这个方法读取class。那么就去看看这个Resource是怎么创建的。
+根据参数Resource, 往上跟可以找到springboot扫描注解组件逻辑，也就是扫描项目中所有有注解的class，然后再调用这个方法读取加载class。 继续去看看这个Resource是怎么创建的。
 
 一路跟，在`PathMatchingResourcePatternResolver.doFindPathMatchingJarResources`发现了创建`Resource`资源的代码`result.add(rootDirResource.createRelative(relativePath));`
 
@@ -242,7 +243,7 @@ springboot2
 
 ```
 
-上边代码一眼看，也没太大问题。都是通过url创建了一个资源链接而已，为毛就是跑步起来呢。 祭上断点大法。
+上边代码一眼看，也没太大问题。都是通过url创建了一个资源链接而已，为毛就是跑步起来呢。 再次祭出断点大法。
 
 断点后发现，两个创建的资源中, `URL` 属性中的`URLStreamHandler`有很大区别。springboot2中该属性为xjar的解密器，二springboot3中却是一个简单的文件读取器。 
 
