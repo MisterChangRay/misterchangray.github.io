@@ -259,12 +259,11 @@ springboot2
 
 其实这里基本就没问题了，实际项目中只要把这个spring-core包从私仓中替换，项目加密也就没有太大的毛病，但是这样对于追求完美的我来说，方便性还差点。毕竟如果使用了springboot3的多个版本，不可能每个都去修改替换下啊，想想都好麻烦
 
-那就再扩展下吧，既然自定义了classloader，那我可以在类加载过程中通过`asm`修改加载中的类，将`UrlResource.createRelative`方法替换为老版本。
+那就再扩展下吧，既然自定义了classloader，那我可以在类加载过程中通过`asm`修改加载中的该方法的字节码，将`UrlResource.createRelative`方法逻辑替换为老版本。
 
+由于asm是通过字节码来修改方法的，根据java源码来写出字节码，小弟还没有那个功力。
 
-由于asm是通过字节码来修改方法的，通过java源码来写出字节码，小弟还没有那个功力。
-
-于是取个巧，直接使用`javap -verbose URLResource.class` 来查看老版本这个方法的指令流程
+取个巧，直接使用`javap -verbose URLResource.class` 来查看老版本这个方法的指令流程
 ```
  public org.springframework.core.io.Resource createRelative(java.lang.String) throws java.net.MalformedURLException;
     descriptor: (Ljava/lang/String;)Lorg/springframework/core/io/Resource;
@@ -303,7 +302,7 @@ springboot2
       throws java.net.MalformedURLException
 ```
 
-然后使用asm转意下，以下为实现核心代码:
+然后使用asm转译下，以下为实现核心代码:
 ```
 
 
@@ -379,7 +378,7 @@ springboot2
 
 然后再来编译一个加密包，再启动，成功！
 
-这样道友们就可以直接使用项目，不用去修改`spring-core`包了。
+这样道友们就可以直接使用项目，不必去修改`spring-core`包了。
 
 
 项目传送地址：https://github.com/MisterChangRay/xjar4springboot3 
