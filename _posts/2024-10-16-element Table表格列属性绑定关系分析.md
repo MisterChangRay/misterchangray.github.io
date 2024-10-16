@@ -19,6 +19,7 @@ tags:
 1. div标签
 2. 有一个data-v属性
 3. class 包含
+   
 ```html
 <div data-v-4c7dc3fa="" class="el-table el-table--fit el-table--striped el-table--border el-table--enable-row-hover el-table--enable-row-transition el-table--medium" style="height: 100%;">
 ```
@@ -28,6 +29,7 @@ tags:
 
 
 接下来，通过xpath访问这个table实例(修改class为实际的,然后再console执行): 
+
 ```js
 a = $x("//div[@class='el-table el-table--fit el-table--striped el-table--border el-table--enable-row-hover el-table--enable-row-transition el-table--medium']")[0].__vue__
 ```
@@ -35,6 +37,7 @@ a = $x("//div[@class='el-table el-table--fit el-table--striped el-table--border 
 这里把table实例抓出来赋予了a, 可以自己看a对象的结构去拿数据。
 
 在实例中遍历所有colum列，并打印结果：
+
 ```js
 a.$children.forEach(item => {console.log(item._props.label, item._props.prop)})
 ```
