@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "jdk vs go 启动的最小内存"
+title:  "java vs go 启动的最小内存"
 date:   2024-11-13 15:29:20 +0800
 categories:
       - java
