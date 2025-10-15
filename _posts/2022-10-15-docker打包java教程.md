@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "docer打包java教程"
+title:  "docker打包java教程"
 date:   2022-10-15 10:29:20 +0800
 categories:
       - java
@@ -33,6 +33,8 @@ ENTRYPOINT ["nohup","java","-Djava.security.egd=file:/dev/./urandom","-jar","/ap
 ```
 
 第一行是使用的基本镜像, 第3行是需要打包的目标包名, 这两个可以根据实际情况调整。
+
+基础镜像可以使用`docker search ` 命令来查找，比如我要查找 jdk17的基础镜像 ，则使用`docker search jdk17`。
 
 
 目录结构如下：
