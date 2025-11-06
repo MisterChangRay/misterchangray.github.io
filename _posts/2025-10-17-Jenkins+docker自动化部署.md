@@ -22,7 +22,7 @@ tags:
 
 dockerfile内容
 
-```txt
+```
 FROM jenkins/jenkins:2.528.1-jdk21
 USER root
 RUN apt-get update && apt-get install -y lsb-release ca-certificates curl && \
@@ -86,7 +86,7 @@ docker run \
 - jenkinsfile, 放置路径为项目跟路径, project/jenkinsfile
   这里主要是Jenkins自动化脚本，自动构建以及启停容器。Jenkinsfile文件内容如下
   
-  ```txt
+  ```
         pipeline {
           agent none
           environment {
