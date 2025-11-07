@@ -63,7 +63,7 @@ pub async fn create_user(
 ```
 
 写完代码，立马我被教育了：vscode马上提示错误，router注册`addusers`函数那里代码报错:
-```rust
+```
 the trait bound `fn(axum::extract::Path<u32>, axum::Json<CreateUserPayload>, axum::extract::State<Pool<MySql>>) -> impl Future<Output = axum::Json<BaseRes>> {create_user}: Handler<_, _>` is not satisfied
 the full name for the type has been written to 'D:\workspace\rust\rust-web-starter\target\debug\deps\rust_web_starter-37beb1a7e3065925.long-type-10239921290377372162.txt'
 consider using `--verbose` to print the full type name to the console
