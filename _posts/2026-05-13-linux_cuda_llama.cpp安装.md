@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "linux大模型cuda安装"
-date:   2016-05-13 10:29:20 +0800
+date:   2026-05-13 10:29:20 +0800
 categories:
       - 大模型
       - cuda
