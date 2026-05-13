@@ -76,6 +76,9 @@ Qwen3-14B-Q6_K.gguf, 这里给32k上下文, 64爆显存， 32k只有15t/s
 
 <img width="570" height="747" alt="image" src="https://github.com/user-attachments/assets/ea13fd82-083d-4797-9feb-0d79cf85c0d3" />
 
+这是qwen3-14b写的魔方，不能运行
+
+<img width="683" height="827" alt="image" src="https://github.com/user-attachments/assets/02467ff4-252b-4cd7-a63d-e1a4d5c2269c" />
 
 
 
