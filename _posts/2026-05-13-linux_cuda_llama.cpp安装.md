@@ -64,10 +64,13 @@ Qwen3-14B-Q6_K.gguf, 这里给32k上下文, 64爆显存， 32k只有15t/s
 
 
 下面是27bq3的回答展示：
+
 魔方截图
+
 <img width="910" height="825" alt="image" src="https://github.com/user-attachments/assets/7a5c9b6d-555c-4c97-9368-396c96b5aa96" />
 
 贪吃蛇截图
+
 <img width="570" height="747" alt="image" src="https://github.com/user-attachments/assets/ea13fd82-083d-4797-9feb-0d79cf85c0d3" />
 
 
