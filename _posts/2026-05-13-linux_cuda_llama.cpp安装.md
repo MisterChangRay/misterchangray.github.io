@@ -72,25 +72,56 @@ Qwen3.6-27B q5 上下文256k， 10t/s。爆显存了。
 
 看样子至少得32g显存才能干事，即使24G显存，估计q4模型上下文也只能开64k左右。
 
-个人电脑部署确实也有点难受。
-
-说实话，27bq3的模型还不错，用它写了两个应用，一个贪吃蛇，一个旋转魔方，一次性通过，也能玩
 
 
-下面是27bq3的回答展示：
 
-魔方截图
+这是qwen3-14b q6回答
 
-<img width="910" height="825" alt="image" src="https://github.com/user-attachments/assets/7a5c9b6d-555c-4c97-9368-396c96b5aa96" />
-
-贪吃蛇截图
-
-<img width="570" height="747" alt="image" src="https://github.com/user-attachments/assets/ea13fd82-083d-4797-9feb-0d79cf85c0d3" />
-
-这是qwen3-14b写的魔方，不能运行，而且这是啥啊，是魔方吗哈哈
-
+魔方截图, 未完成, 不能运行，而且这是啥啊，是魔方吗哈哈
 <img width="683" height="827" alt="image" src="https://github.com/user-attachments/assets/02467ff4-252b-4cd7-a63d-e1a4d5c2269c" />
 
 
+下面是27bq3回答展示：
 
+俄罗斯方块, 一次完成，能运行， 但是有瑕疵， 下落速度太快而且下落地方像开挂了，可以预瞄准？
+<img width="590" height="772" alt="image" src="https://github.com/user-attachments/assets/783b5210-0728-48e1-a043-d803586df5fb" />
+
+
+魔方截图，一次完成，能运行
+
+<img width="910" height="825" alt="image" src="https://github.com/user-attachments/assets/7a5c9b6d-555c-4c97-9368-396c96b5aa96" />
+
+贪吃蛇截图， 一次完成，能运行
+
+<img width="570" height="747" alt="image" src="https://github.com/user-attachments/assets/ea13fd82-083d-4797-9feb-0d79cf85c0d3" />
+
+下面是27bq5 128k上下文的回答：
+
+俄罗斯方块，一次完成，无瑕疵，正常玩
+
+<img width="584" height="730" alt="image" src="https://github.com/user-attachments/assets/c5a8418c-d09f-4808-86d6-31d26f0f88d1" />
+
+魔方截图，这个就有点复杂了，第一次生产的代码语法有问题， 提示修改后能运行，但是启动前魔方只有骨架，第三次修改后翻转后翻转面没有颜色，第四次还是没改好，算了不搞了
+
+第二次修改的，回答了2分钟
+<img width="563" height="699" alt="image" src="https://github.com/user-attachments/assets/c53f3dbd-ac99-4a77-90e7-5df13d3a7caa" />
+
+第三次修改，回答了3分钟
+
+<img width="566" height="675" alt="image" src="https://github.com/user-attachments/assets/eb2bd870-e191-49e2-b6c0-538346cdb530" />
+
+第四次修改，回答了5分钟，还是没盖好，算了，不试了
+
+<img width="557" height="664" alt="image" src="https://github.com/user-attachments/assets/4ce24bc4-72de-47a1-955f-fbb595fd2485" />
+
+贪吃蛇，一次完成，无瑕疵，这UI有点东西了
+
+<img width="806" height="871" alt="image" src="https://github.com/user-attachments/assets/80d70eea-9f19-4bb4-83e3-542c82a37084" />
+
+
+#### 总结
+
+个人电脑部署确实也有点难受。
+
+说实话，27bq6的模型还不错，不过至少得32g显存
 
