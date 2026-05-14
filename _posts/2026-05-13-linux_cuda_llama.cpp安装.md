@@ -35,6 +35,13 @@ gpu 5060ti 16g
    
    这里备注一个坑，之前我安装的13.2的， 没想到不支持低精度的模型（主要是4bit以下的会回复乱码）。所以这里我安装的12.8的
 
+   安装完成后`nvcc --version`测试是否安装成功,如果找不到命令则
+   
+   - 查看`/usr/local/cuda/bin`目录是否存在, 也就是是否安装成功
+   - 添加`/usr/local/cuda/bin`到环境`~/.bashrc`变量
+   - 使用`source ~/.bashrc`应用
+   
+
 5. 我这里使用的llama.cpp，安装流程如下
    在rease页面下载最新版本的源码就行,下载地址[llama.cpp](https://github.com/ggml-org/llama.cpp/releases)
    
